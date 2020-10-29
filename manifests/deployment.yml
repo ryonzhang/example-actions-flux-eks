@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: aws-example-octodex
@@ -12,6 +12,9 @@ spec:
       maxSurge: 1
       maxUnavailable: 1
   minReadySeconds: 5
+  selector:
+    matchLabels:
+      app: aws-example-octodex
   template:
     metadata:
       labels:
@@ -20,7 +23,7 @@ spec:
       containers:
       - name: aws-example-octodex
         # image: 00000000000000.dkr.ecr.my-region.amazonaws.com/example-eks:tag
-        image: 896629355412.dkr.ecr.eu-west-2.amazonaws.com/demo/demo-1:tag
+        image: 896629355412.dkr.ecr.eu-west-2.amazonaws.com/demo/demo-1:e3d869776c700406f4887f2a54a5c75805168d53
         ports:
         - containerPort: 5000
         resources:
